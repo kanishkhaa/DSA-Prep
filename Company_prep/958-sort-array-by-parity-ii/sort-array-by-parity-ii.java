@@ -12,6 +12,8 @@ class Solution {
                 int temp = nums[even];
                 nums[even] = nums[odd];
                 nums[odd] = temp;
+                even+=2;
+                odd+=2;
             }
         }
         return nums;
