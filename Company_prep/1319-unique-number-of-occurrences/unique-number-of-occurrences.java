@@ -6,9 +6,10 @@ class Solution {
        }
        HashSet<Integer> set = new HashSet<>();
        for(int freq : map.values()){
-          if(!set.add(freq)){
+           if(!set.add(freq)) {
             return false;
-          }
+           }
+           
        }
        return true;
     }
