@@ -1,11 +1,14 @@
 class Solution {
     public boolean isPalindrome(String s) {
-         s = s.toLowerCase();
-         String rev="";
-         for (int i = s.length() - 1; i >= 0; i--) {
-            rev = rev + s.charAt(i);
+        int i = 0, j = s.length() - 1;
+        while (i < j) {
+            if (s.charAt(i) != s.charAt(j)) {
+                return false;      
+            }
+            i++;
+            j--;
         }
-        return s.equals(rev);
+        return true;      
     }
     public String firstPalindrome(String[] words) {
         for(String ch : words){
