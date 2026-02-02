@@ -5,11 +5,12 @@ class Solution {
         while(left<right) {
             int sum = nums[left] + nums[right];
             if(sum == target) {
-                return new int[]{left+1,right+1};
-            } else if(sum<target) {
+                return new int[]{left+1, right+1};
+            }
+            else if(sum<target) {
                 left++;
             } else {
-               right--;
+                right--;
             }
         }
         return new int[]{-1,-1};
