@@ -1,5 +1,5 @@
 class Solution {
-    public void rev(int[] nums, int start, int end) {
+    public void rot(int[] nums, int start, int end) {
         while(start<end) {
             int temp = nums[start];
             nums[start] = nums[end];
@@ -11,8 +11,8 @@ class Solution {
     public void rotate(int[] nums, int k) {
         int n = nums.length;
         k = k%n;
-        rev(nums,0,n-1);
-        rev(nums,0,k-1);
-        rev(nums,k,n-1);
+        rot(nums,0,n-1);
+        rot(nums,0,k-1);
+        rot(nums,k,n-1);
     }
 }
