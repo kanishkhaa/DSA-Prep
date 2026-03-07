@@ -1,65 +1,38 @@
-class Pair {
-    int row;
-    int col;
-    int time;
-
-    Pair(int row, int col, int time) {
-        this.row = row;
-        this.col = col;
-        this.time = time;
-    }
-}
-
 class Solution {
-
     public int orangesRotting(int[][] grid) {
-
-        int n = grid.length;
-        int m = grid[0].length;
-
-        Queue<Pair> q = new LinkedList<>();
-        int[][] vis = new int[n][m];
+        int rows = grid.length;
+        int cols = grid[0].length;
+        Queue<int[]> queue = new LinkedList<>();
         int fresh = 0;
-        for(int i = 0; i < n; i++) {
-            for(int j = 0; j < m; j++) {
+        for(int i=0;i<rows;i++) {
+            for(int j=0;j<cols;j++) {
                 if(grid[i][j] == 2) {
-                    q.add(new Pair(i, j, 0));
-                    vis[i][j] = 2;
-                } 
-                else {
-                    vis[i][j] = 0;
+                    queue.add(new int[]{i,j});
                 }
-                if(grid[i][j] == 1)
-                  fresh++;
-            }
-        }
-
-        int time = 0;
-        int rotten = 0;
-
-        int[] drow = {-1,0,1,0}; //(row-1,col = top , row, col+1 = right, row+1,col = bottom, row,col-1 = left)
-        int[] dcol = {0,1,0,-1};
-        while(!q.isEmpty()) {
-            Pair p = q.poll();
-            int r = p.row;
-            int col = p.col;
-            int t = p.time;
-            time = Math.max(time, t);
-            for(int i = 0; i < 4; i++) {
-                int nrow = r + drow[i];
-                int ncol = col + dcol[i];
-                if(nrow >= 0 && nrow < n &&
-                   ncol >= 0 && ncol < m && // to check within limit
-                   grid[nrow][ncol] == 1 && // to check whether they are fresh
-                   vis[nrow][ncol] == 0) { // to check whether they are unvisited
-                    q.add(new Pair(nrow, ncol, t + 1)); // add the pair and increase time
-                    vis[nrow][ncol] = 2; // mark them rotten
-                    rotten++;
+                if(grid[i][j] == 1) {
+                    fresh++;
                 }
             }
         }
-        if(rotten != fresh) // to check whether all oranges are rotten if not return -1
-            return -1;
-        return time;
+        if(fresh==0) return 0;
+        int minutes = 0;
+        int[][] directions = {{1,0},{-1,0},{0,1},{0,-1}};
+        while(!queue.isEmpty() && fresh>0) {
+            int size = queue.size();
+            minutes++;
+            for(int i=0;i<size;i++) {
+                int[] curr = queue.poll();
+                for(int[] dir : directions) {
+                    int r = curr[0] + dir[0];
+                    int c = curr[1] + dir[1];
+                    if(r>=0 && r<rows && c>=0 && c<cols && grid[r][c] == 1) {
+                        grid[r][c] = 2;
+                        fresh--;
+                        queue.add(new int[]{r,c});
+                    }
+                }
+            }
+        }
+        return fresh == 0? minutes : -1;
     }
 }
