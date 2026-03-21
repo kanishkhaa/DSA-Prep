@@ -1,13 +1,13 @@
 class Solution {
     public int largestSumAfterKNegations(int[] nums, int k) {
         for(int i=0;i<k;i++) {
-            int minIndex = 0;
-            for(int j=0;j<nums.length;j++) {
-                if(nums[j] < nums[minIndex]) {
-                    minIndex = j;
-                }
-            }
-            nums[minIndex] = -nums[minIndex];
+          int minindex = 0;
+          for(int j=0;j<nums.length;j++) {
+             if(nums[j] < nums[minindex]) {
+                minindex = j;
+             }
+          }
+         nums[minindex] = -nums[minindex];
         }
         int sum = 0;
         for(int i=0;i<nums.length;i++) {
