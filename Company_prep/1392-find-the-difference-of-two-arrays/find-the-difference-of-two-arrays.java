@@ -16,7 +16,7 @@ class Solution {
                 diff1.add(x);
             }
         }
-         for(int x : n2) {
+        for(int x : n2) {
             if(!n1.contains(x)) {
                 diff2.add(x);
             }
