@@ -1,18 +1,60 @@
-class MyHashMap {
-    HashMap<Integer,Integer> map = new HashMap<>();
-    public MyHashMap() {
+class Node {
+    int key;
+    int value;
+    Node next;
+    Node (int key, int val) {
+        this.key = key;
+        this.value = val;
+        this.next = null;
     }
-    
+}
+class MyHashMap {
+    private Node[] map;
+    public MyHashMap() {
+      map = new Node[1000];
+      for(int i=0;i<1000;i++) {
+         map[i] = new Node(-1,-1);
+      }
+    }
+
     public void put(int key, int value) {
-        map.put(key,value);
+        int hash = hash(key);
+        Node curr = map[hash];
+        while(curr.next != null) {
+            if(curr.next.key == key) {
+                curr.next.value = value;
+                return;
+            }
+            curr = curr.next;
+        }
+       curr.next = new Node(key, value);
     }
     
     public int get(int key) {
-        return map.getOrDefault(key,-1);
+        int hash  = hash(key);
+        Node curr = map[hash];
+        while(curr.next != null) {
+            if(curr.next.key == key) {
+                return curr.next.value;
+            }
+            curr = curr.next;
+        }
+        return -1;
     }
     
     public void remove(int key) {
-        map.remove(key);
+        int hash = hash(key);
+        Node curr = map[hash];
+        while(curr.next != null) {
+            if(curr.next.key == key) {
+                curr.next = curr.next.next;
+                return;
+            }
+            curr = curr.next;
+        }
+    }
+    private int hash(int key) {
+        return key % 1000;
     }
 }
 
