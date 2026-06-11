@@ -1,13 +1,18 @@
 class Solution {
     public int strStr(String haystack, String needle) {
-        if(haystack.length() < needle.length()) {
-            return -1;
-        }
-        for(int i=0;i<=haystack.length()-needle.length();i++) {
-            if(haystack.substring(i,i+needle.length()).equals(needle)) {
+        if(needle.length() > haystack.length()) return -1;
+        for(int i = 0;i<=haystack.length() - needle.length();i++) {
+            boolean isfound = true;
+            for(int j = 0; j<needle.length();j++) {
+                if(haystack.charAt(i+j) != needle.charAt(j)){ 
+                    isfound = false;
+                    break;
+                }
+            }
+            if(isfound) {
                 return i;
             }
         }
-        return -1;
+        return -1; 
     }
 }
