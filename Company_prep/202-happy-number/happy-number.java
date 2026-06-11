@@ -1,21 +1,21 @@
 class Solution {
-    public int square(int n) {
-        int res = 0;
-        while(n>0) {
-            int digit = n%10;
-            res+=digit*digit;
-            n/=10;
-        }
-        return res;
+    public int sq(int n) {
+        int s = 0;
+       while(n > 0) {
+          int d = n % 10;
+          s += d * d;
+          n/=10;
+       }
+       return s;
+}
+ public boolean isHappy(int n) {
+    int i = sq(n);
+    int j = sq(sq(n));
+    while(i!=j) {
+        if(j==1) return true;
+        i = sq(i);
+        j = sq(sq(j));
     }
-    public boolean isHappy(int n) {
-        int slow = square(n);
-        int fast = square(square(n));
-        while(slow!=fast) {
-            if(fast == 1) return true;
-            slow = square(slow);
-            fast = square(square(fast));
-        }
-        return slow==1;
-    }
+    return i == 1;
+ }
 }
