@@ -1,19 +1,19 @@
 class Solution {
     public int maxProduct(int[] nums) {
-        int maxpro1 = Integer.MIN_VALUE;
-        int maxpro2 = Integer.MIN_VALUE;
-        int currpro = 1;
-        for(int n: nums) {
-            currpro*=n;
-            maxpro1 = Math.max(maxpro1,currpro);
-            if(currpro == 0) currpro=1;
+        int pro1 = Integer.MIN_VALUE;
+        int pro2 = Integer.MIN_VALUE;
+        int curr = 1;
+        for(int i = 0 ;i<nums.length;i++) {
+           curr*=nums[i];
+           pro1 = Math.max(pro1, curr);
+           if(curr == 0) curr = 1;
         }
-        currpro=1;
-        for(int i=nums.length-1;i>=0;i--) {
-            currpro*=nums[i];
-            maxpro2 = Math.max(maxpro2,currpro);
-            if(currpro==0) currpro = 1;
-        }
-        return Math.max(maxpro1, maxpro2);
+        curr = 1;
+        for(int i = nums.length-1;i>=0;i--) {
+            curr*=nums[i];
+            pro2 = Math.max(pro2,curr);
+            if(curr == 0) curr = 1;
+        } 
+        return Math.max(pro1, pro2);
     }
 }
