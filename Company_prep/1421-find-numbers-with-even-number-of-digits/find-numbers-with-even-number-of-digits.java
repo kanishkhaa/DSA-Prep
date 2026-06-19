@@ -1,20 +1,21 @@
 class Solution {
-    public boolean isEven(int num) {
+    public int len (int n) {
+        int temp = n;
         int count = 0;
-        while(num>0) {
-            int digit = num%10;
+        while(temp > 0) {
+            int d  = temp % 10;
             count++;
-            num=num/10;
+            temp/=10;
         }
-        return count%2==0;
+        return count;
     }
     public int findNumbers(int[] nums) {
-        int c = 0;
-        for(int n : nums) {
-            if(isEven(n)) {
-               c++;
-            }
+        int res = 0;
+        for(int i=0;i<nums.length;i++) {
+           if(len(nums[i]) % 2 == 0) {
+              res++;
+           }
         }
-        return c;
+        return res;
     }
 }
