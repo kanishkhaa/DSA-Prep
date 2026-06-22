@@ -1,5 +1,5 @@
 class MyQueue {
-    Stack<Integer> s1;
+    Stack<Integer> s1; 
     Stack<Integer> s2;
     public MyQueue() {
         s1 = new Stack<>();
@@ -16,7 +16,7 @@ class MyQueue {
                 s2.push(s1.pop());
             }
         }
-       return s2.pop();
+        return s2.pop();
     }
     
     public int peek() {
@@ -25,7 +25,7 @@ class MyQueue {
                 s2.push(s1.pop());
             }
         }
-       return s2.peek();
+        return s2.peek();
     }
     
     public boolean empty() {
