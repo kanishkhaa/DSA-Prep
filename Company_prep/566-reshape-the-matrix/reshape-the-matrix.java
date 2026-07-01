@@ -5,15 +5,14 @@ class Solution {
         if(n*m != r*c) {
             return mat;
         }
-        int[][] res = new int[r][c];
         int index = 0;
+        int[][] res = new int[r][c];
         for(int i=0;i<n;i++) {
             for(int j=0;j<m;j++) {
                 res[index/c][index%c] = mat[i][j];
-                index+=1;
+                index++;
             }
         }
         return res;
     }
 }
-        
