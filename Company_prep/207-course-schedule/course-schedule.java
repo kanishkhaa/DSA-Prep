@@ -9,20 +9,18 @@ class Solution {
         }
         int[] vis = new int[numCourses];
         for(int i=0;i<numCourses;i++) {
-            if(dfs(i,graph, vis)) {
-                return false;
-            }
+            if(dfs(i,graph,vis)) return false;
         }
-        return true; 
+        return true;
     }
-    public boolean dfs(int course,List<List<Integer>> graph , int[] vis) {
-        if(vis[course] == 1) return true;
-        if(vis[course] == 2) return false;
-        vis[course] = 1;
-        for(int node : graph.get(course)) {
-            if(dfs(node,graph, vis)) return true;
+    public boolean dfs(int node, List<List<Integer>> graph,int[] vis) {
+        if(vis[node] == 1) return true;
+        if(vis[node] == 2) return false;
+        vis[node] = 1;
+        for(int nod : graph.get(node)) {
+            if(dfs(nod,graph, vis)) return true;
         }
-        vis[course] = 2;
+        vis[node] = 2;
         return false;
     }
 }
