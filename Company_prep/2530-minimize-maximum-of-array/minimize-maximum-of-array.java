@@ -5,7 +5,7 @@ class Solution {
         for(int i=0;i<nums.length;i++) {
             sum+=nums[i];
             int avg = (int)Math.ceil((double)sum/(i+1));
-            ans = Math.max(ans,avg);
+            ans = Math.max(avg,ans);
         }
         return ans;
     }
